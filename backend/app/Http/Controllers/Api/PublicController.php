@@ -3,6 +3,7 @@
 namespace App\Http\Controllers\Api;
 
 use App\Http\Controllers\Controller;
+use App\Models\WasteBank;
 use App\Models\WasteType;
 use Illuminate\Http\Request;
 
@@ -80,5 +81,71 @@ class PublicController extends Controller
                 'total_estimated' => $total,
             ],
         ]);
+    }
+
+    public function wasteBanks(Request $request)
+    {
+        $query = WasteBank::with(['catalog.wasteType'])->where('is_active', true);
+
+        if ($request->filled('waste_type_id')) {
+            $id = (int) $request->input('waste_type_id');
+            $query->whereHas('catalog', fn ($catalog) => $catalog->where('waste_type_id', $id));
+        }
+
+        if ($request->filled('kecamatan') && $request->input('kecamatan') !== 'Semua') {
+            $query->where('kecamatan', $request->input('kecamatan'));
+        }
+
+        if ($request->filled('search')) {
+            $search = $request->input('search');
+            $query->where(fn ($bank) => $bank
+                ->where('name', 'like', "%{$search}%")
+                ->orWhere('address', 'like', "%{$search}%")
+                ->orWhere('kecamatan', 'like', "%{$search}%"));
+        }
+
+        $banks = $query->orderBy('name')->get()->map(fn ($bank) => $this->serializeBank($bank));
+
+        return response()->json([
+            'data' => $banks,
+            'meta' => ['total' => $banks->count()],
+        ]);
+    }
+
+    public function wasteBank($id)
+    {
+        $bank = WasteBank::with(['catalog.wasteType'])->findOrFail($id);
+
+        return response()->json(['data' => $this->serializeBank($bank)]);
+    }
+
+    private function serializeBank(WasteBank $bank): array
+    {
+        return [
+            'id' => $bank->id,
+            'external_id' => $bank->external_id,
+            'source_name' => $bank->source_name,
+            'source_url' => $bank->source_url,
+            'location_verified_at' => $bank->location_verified_at,
+            'name' => $bank->name,
+            'address' => $bank->address,
+            'kelurahan' => $bank->kelurahan,
+            'kecamatan' => $bank->kecamatan,
+            'kota' => $bank->kota,
+            'lat' => $bank->lat,
+            'lng' => $bank->lng,
+            'phone' => $bank->phone,
+            'whatsapp' => $bank->whatsapp,
+            'operating_hours' => $bank->operating_hours,
+            'photo_url' => $bank->photo_url,
+            'is_active' => $bank->is_active,
+            'accepted_types' => $bank->catalog->map(fn ($catalog) => [
+                'waste_type_id' => $catalog->waste_type_id,
+                'name' => $catalog->wasteType?->name,
+                'category' => $catalog->wasteType?->category,
+                'price_per_kg' => (float) $catalog->price_per_kg,
+                'updated_at' => $catalog->updated_at,
+            ])->values(),
+        ];
     }
 }
