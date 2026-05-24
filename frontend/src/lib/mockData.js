@@ -269,3 +269,67 @@ export const externalPrices = [
   image_url: null,
   source_updated_at: "2026-05-24T09:00:00+07:00",
 }));
+
+export const guides = [
+  {
+    id: 1,
+    title: "Cara Memilah Sampah Plastik agar Bernilai Lebih",
+    excerpt: "Botol plastik yang bersih dan label terlepas bisa dijual hingga 2x lipat. Begini caranya.",
+    waste_type_id: 1,
+    cover_image_url: "https://images.unsplash.com/photo-1572964734607-0051976fac79?auto=format&fit=crop&w=1200&q=70",
+    published_at: "2026-01-04T09:00:00+07:00",
+    content: `Sampah plastik adalah salah satu jenis sampah yang paling banyak diterima bank sampah di Indonesia.
+
+## Langkah Memilah Plastik
+
+1. Pisahkan berdasarkan jenis plastik.
+2. Cuci dan keringkan sebelum disetor.
+3. Lepas label dan tutup jika diminta.
+4. Tekan botol untuk menghemat tempat.
+
+## Tips Tambahan
+
+Simpan plastik di tempat kering dan setor secara rutin.`,
+  },
+  {
+    id: 2,
+    title: "Panduan Memilah Kardus dan Kertas",
+    excerpt: "Kardus kering bernilai lebih tinggi dari koran. Pelajari cara penanganan terbaiknya.",
+    waste_type_id: 5,
+    cover_image_url: "https://images.unsplash.com/photo-1605600659908-0ef719419d41?auto=format&fit=crop&w=1200&q=70",
+    published_at: "2026-01-02T09:00:00+07:00",
+    content: `Kardus dan kertas adalah komoditas yang stabil di pasar daur ulang.
+
+## Cara Memilah
+
+1. Pisahkan kardus, koran, dan HVS.
+2. Pastikan semuanya kering.
+3. Lipat kardus agar mudah ditumpuk.
+
+## Yang Tidak Diterima
+
+- Kertas berlapis lilin
+- Tisu bekas pakai
+- Kertas thermal struk belanja`,
+  },
+  {
+    id: 3,
+    title: "Logam Bekas: Aluminium, Besi, dan Tembaga",
+    excerpt: "Tembaga adalah logam dengan harga tertinggi di pasar rongsokan. Begini cara mengenalinya.",
+    waste_type_id: 9,
+    cover_image_url: "https://images.unsplash.com/photo-1518709268805-4e9042af2176?auto=format&fit=crop&w=1200&q=70",
+    published_at: "2025-12-28T09:00:00+07:00",
+    content: `Logam bekas adalah jenis sampah dengan nilai ekonomi tinggi.
+
+## Tiga Jenis Utama
+
+1. Aluminium ringan dan tidak menempel magnet.
+2. Besi biasanya magnetis.
+3. Tembaga sering berasal dari kabel atau pipa.
+
+## Tips
+
+- Pisahkan logam berdasarkan jenis.
+- Pastikan material tidak bercampur sampah basah.`,
+  },
+];

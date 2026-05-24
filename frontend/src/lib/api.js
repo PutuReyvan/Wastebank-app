@@ -4,6 +4,7 @@ import {
   wasteBanks as mockWasteBanks,
   priceSources as mockPriceSources,
   externalPrices as mockExternalPrices,
+  guides as mockGuides,
 } from "@/lib/mockData";
 
 const BACKEND_URL = process.env.REACT_APP_BACKEND_URL || "";
@@ -205,4 +206,31 @@ export async function getExternalPrices({ source, category, search } = {}) {
   }
 
   return paginate(items);
+}
+
+export async function getGuides({ waste_type_id } = {}) {
+  if (USE_REAL_API) {
+    const res = await http.get("/guides", { params: { waste_type_id } });
+    return res.data;
+  }
+
+  let items = [...mockGuides].sort(
+    (a, b) => new Date(b.published_at) - new Date(a.published_at),
+  );
+  if (waste_type_id) {
+    items = items.filter((guide) => guide.waste_type_id === Number(waste_type_id));
+  }
+
+  return paginate(items);
+}
+
+export async function getGuide(id) {
+  if (USE_REAL_API) {
+    const res = await http.get(`/guides/${id}`);
+    return res.data;
+  }
+
+  const guide = mockGuides.find((item) => item.id === Number(id));
+  if (!guide) throw new Error("Panduan tidak ditemukan");
+  return { data: guide };
 }

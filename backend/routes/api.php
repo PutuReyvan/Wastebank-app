@@ -11,5 +11,7 @@ Route::post('/calculator', [PublicController::class, 'calculator']);
 Route::get('/waste-banks', [PublicController::class, 'wasteBanks']);
 Route::get('/waste-banks/{id}', [PublicController::class, 'wasteBank']);
 Route::get('/google/waste-banks', [GooglePlacesController::class, 'wasteBanks']);
+Route::get('/guides', [PublicController::class, 'guides']);
+Route::get('/guides/{id}', [PublicController::class, 'guide']);
 Route::get('/price-sources', [PublicController::class, 'priceSources']);
 Route::get('/external-prices', [PublicController::class, 'externalPrices']);

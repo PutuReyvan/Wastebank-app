@@ -7,7 +7,9 @@ use App\Models\WasteBankCatalog;
 use App\Models\ExternalWastePrice;
 use App\Models\PriceSource;
 use App\Models\WasteType;
+use App\Models\RecyclingGuide;
 use Illuminate\Database\Seeder;
+use Carbon\Carbon;
 
 class DatabaseSeeder extends Seeder
 {
@@ -130,6 +132,23 @@ class DatabaseSeeder extends Seeder
                     'price_per_kg' => $price,
                 ]);
             }
+        }
+
+        // ---- Guides ----
+        $guides = [
+            [1, 'Cara Memilah Sampah Plastik agar Bernilai Lebih', 'Botol plastik yang bersih dan label terlepas bisa dijual hingga 2x lipat. Begini caranya.', 1, '2026-01-04', 'https://images.unsplash.com/photo-1572964734607-0051976fac79?auto=format&fit=crop&w=1200&q=70', "Sampah plastik adalah salah satu jenis sampah yang paling banyak diterima bank sampah di Indonesia. Namun, harganya bisa sangat berbeda tergantung kondisi dan jenis plastiknya.\n\n## Langkah Memilah Plastik\n\n1. **Pisahkan berdasarkan jenis** — PET (botol bening), HDPE (kemasan deterjen), LDPE (kresek), PP (gelas plastik).\n2. **Cuci dan keringkan** — Plastik basah/berbau akan ditolak atau dihargai jauh lebih rendah.\n3. **Lepas label dan tutup** — Label kertas akan menurunkan kualitas plastik saat didaur ulang.\n4. **Tekan untuk hemat tempat** — Mudahkan pengangkutan, dan beberapa bank sampah memberi bonus untuk plastik yang sudah dipres.\n\n## Yang Tidak Diterima\n\n- Styrofoam (sebagian besar bank sampah tidak menerimanya)\n- Plastik kemasan multilayer (snack, bumbu instan)\n- Plastik yang bercampur makanan basah\n\n## Tips Tambahan\n\nSimpan plastik di tempat kering dan jauhkan dari sinar matahari langsung agar tidak rapuh. Setor minimal 1 minggu sekali agar volume cukup ekonomis."],
+            [2, 'Panduan Memilah Kardus dan Kertas', 'Kardus kering bernilai lebih tinggi dari koran. Pelajari cara penanganan terbaiknya.', 5, '2026-01-02', 'https://images.unsplash.com/photo-1605600659908-0ef719419d41?auto=format&fit=crop&w=1200&q=70', "Kardus dan kertas adalah komoditas yang stabil di pasar daur ulang.\n\n## Cara Memilah\n\n1. Pisahkan kardus, koran, dan HVS — masing-masing punya harga berbeda.\n2. Pastikan benar-benar kering. Kertas basah tidak akan diterima.\n3. Lipat kardus agar mudah ditumpuk dan diangkut.\n4. Buang isi staples atau lakban besar untuk meningkatkan kualitas.\n\n## Yang Tidak Diterima\n\n- Kertas berlapis lilin (kemasan susu/jus)\n- Tisu bekas pakai\n- Kertas thermal struk belanja\n\n## Penyimpanan\n\nSimpan di area kering, tidak terkena hujan. Setor sebelum musim hujan jika menyimpan dalam jumlah besar."],
+            [3, 'Logam Bekas: Aluminium, Besi, dan Tembaga', 'Tembaga adalah logam dengan harga tertinggi di pasar rongsokan. Begini cara mengenalinya.', 9, '2025-12-28', 'https://images.unsplash.com/photo-1518709268805-4e9042af2176?auto=format&fit=crop&w=1200&q=70', "Logam bekas adalah jenis sampah dengan nilai ekonomi tertinggi.\n\n## Tiga Jenis Utama\n\n1. **Aluminium** — Kaleng minuman, panci tipis. Ringan, tidak menempel magnet.\n2. **Besi** — Magnetis, paling umum, harga paling rendah dari ketiga jenis.\n3. **Tembaga** — Kabel, pipa AC, koil dinamo. Harga paling mahal — bisa Rp 70.000+/kg.\n\n## Tips\n\n- Kupas insulasi kabel untuk mendapatkan tembaga murni (harga lebih tinggi).\n- Pastikan tidak basah/berkarat berat untuk besi.\n- Pisahkan dari logam lain saat ditimbang."],
+            [4, 'Botol Kaca: Apa yang Perlu Anda Tahu', 'Tidak semua bank sampah menerima kaca. Pelajari di mana menyetornya.', 12, '2025-12-22', 'https://images.unsplash.com/photo-1610631066894-62452ccb927c?auto=format&fit=crop&w=1200&q=70', "Botol kaca punya harga yang relatif rendah, tapi tetap bernilai jika dikumpulkan rapi.\n\n## Cara Memilah\n\n- Pisahkan bening, hijau, dan cokelat.\n- Lepas tutup logam (jual terpisah sebagai logam).\n- Bungkus dengan koran agar tidak pecah saat diangkut.\n\n## Catatan\n\nBanyak bank sampah Jakarta Barat yang sudah tidak menerima kaca karena rendahnya margin. Cek dulu di direktori sebelum membawa."],
+            [5, 'E-Waste: Ke Mana Sampah Elektronik Anda?', 'Limbah elektronik berbahaya jika dibuang sembarangan. Inilah pilihan amannya.', 14, '2025-12-15', 'https://images.unsplash.com/photo-1605379399642-870262d3d051?auto=format&fit=crop&w=1200&q=70', "Sampah elektronik (e-waste) mengandung logam berat seperti merkuri dan timbal yang berbahaya jika masuk lingkungan.\n\n## Yang Termasuk E-Waste\n\n- Ponsel & charger lama\n- Laptop, hard drive, baterai laptop\n- Lampu LED & neon (lampu neon mengandung merkuri)\n- Adaptor, kabel, casing PC\n\n## Cara Setor\n\n1. Cari NGO atau pengepul khusus e-waste (lihat halaman Vendor → filter Elektronik).\n2. Hapus data pribadi dari ponsel/laptop sebelum diserahkan.\n3. Banyak NGO menerima gratis untuk volume kecil."],
+            [6, 'Memulai Kompos di Rumah dari Sampah Organik', 'Sampah organik tidak diterima bank sampah, tapi bisa Anda olah jadi pupuk gratis di rumah.', 15, '2025-12-10', 'https://images.unsplash.com/photo-1592878904946-b3cd8ae243d0?auto=format&fit=crop&w=1200&q=70', "Sampah organik (sisa makanan, kulit buah, daun) adalah 40-60% dari total sampah rumah tangga di Indonesia.\n\n## Cara Memulai Kompos\n\n1. Siapkan ember plastik dengan tutup, lubangi sisi-sisinya.\n2. Lapisi dasar dengan daun kering atau koran sobek.\n3. Masukkan sampah organik (hindari daging, tulang, minyak).\n4. Aduk seminggu sekali. Tambah daun kering jika terlalu basah.\n5. Setelah 4-6 minggu, kompos siap dipakai untuk tanaman.\n\n## Tips\n\nTidak perlu lahan luas — ember 20 liter cukup untuk keluarga 4 orang."],
+        ];
+        foreach ($guides as [$id, $title, $excerpt, $wid, $date, $cover, $content]) {
+            RecyclingGuide::updateOrCreate(['id' => $id], [
+                'title' => $title, 'excerpt' => $excerpt, 'content' => $content,
+                'waste_type_id' => $wid, 'cover_image_url' => $cover,
+                'published_at' => Carbon::parse($date . ' 09:00:00'),
+            ]);
         }
 
         $source = PriceSource::updateOrCreate(

@@ -7,6 +7,8 @@ import KatalogDetail from "@/pages/KatalogDetail";
 import Kalkulator from "@/pages/Kalkulator";
 import BankSampah from "@/pages/BankSampah";
 import BankSampahDetail from "@/pages/BankSampahDetail";
+import Panduan from "@/pages/Panduan";
+import PanduanDetail from "@/pages/PanduanDetail";
 import NotFound from "@/pages/NotFound";
 import PriceList from "@/pages/PriceList";
 
@@ -37,6 +39,8 @@ export default function App() {
             <Route path="/bank-sampah" element={<BankSampah />} />
             <Route path="/bank-sampah/:id" element={<BankSampahDetail />} />
             <Route path="/price-list" element={<PriceList />} />
+            <Route path="/panduan" element={<Panduan />} />
+            <Route path="/panduan/:id" element={<PanduanDetail />} />
             <Route path="*" element={<NotFound />} />
           </Route>
         </Routes>

@@ -3,6 +3,7 @@
 namespace App\Http\Controllers\Api;
 
 use App\Http\Controllers\Controller;
+use App\Models\RecyclingGuide;
 use App\Models\ExternalWastePrice;
 use App\Models\PriceSource;
 use App\Models\WasteBank;
@@ -119,6 +120,22 @@ class PublicController extends Controller
         $bank = WasteBank::with(['catalog.wasteType'])->findOrFail($id);
 
         return response()->json(['data' => $this->serializeBank($bank)]);
+    }
+
+    public function guides(Request $req)
+    {
+        $q = RecyclingGuide::whereNotNull('published_at');
+        if ($req->filled('waste_type_id')) {
+            $q->where('waste_type_id', (int) $req->input('waste_type_id'));
+        }
+        $guides = $q->orderByDesc('published_at')->get();
+        return response()->json(['data' => $guides, 'meta' => ['total' => $guides->count()]]);
+    }
+
+    public function guide($id)
+    {
+        $g = RecyclingGuide::findOrFail($id);
+        return response()->json(['data' => $g]);
     }
 
     public function priceSources()
