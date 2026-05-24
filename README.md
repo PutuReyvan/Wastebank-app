@@ -50,16 +50,41 @@ npm run build
 
 ## Pull Request Workflow
 
-- Do not push feature work directly to `main`.
-- Branch from `main` using `feature/<feature-name>`.
-- Keep one feature per pull request.
-- Include a short summary, screenshots for frontend changes, API routes changed, migration/seed changes, and manual test steps.
+Use fork-based pull requests for group work:
 
-Suggested feature branches:
+1. Fork this repository to your own GitHub account.
+2. Clone your fork.
+3. Create a branch from your fork's `main`.
+4. Build one feature only.
+5. Push the branch to your fork.
+6. Open a pull request into `PutuReyvan/Wastebank-app:main`.
 
-- `feature/catalog`
-- `feature/calculator`
-- `feature/waste-bank-directory`
+```bash
+git clone https://github.com/<your-username>/Wastebank-app.git
+cd Wastebank-app
+git checkout -b feature/catalog
+```
+
+Do not commit secrets or local files:
+
+- no `.env`
+- no API keys
+- no `node_modules`
+- no `vendor`
+- no build output
+- no logs/cache files
+- no local planning files
+
+Each pull request must include a short summary, screenshots for frontend changes, API routes changed, migration/seed changes, and manual test steps.
+
+First-priority feature PRs:
+
+1. `feature/catalog`
+2. `feature/calculator`
+3. `feature/waste-bank-directory`
+
+Later feature PRs:
+
 - `feature/vendors`
 - `feature/guides`
 - `feature/bank-dashboard`
