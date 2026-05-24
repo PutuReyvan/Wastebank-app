@@ -139,7 +139,14 @@ export async function getWasteBanks({ waste_type_id, kecamatan, search } = {}) {
   return paginate(items.map(attachAccepted));
 }
 
-export async function getGoogleWasteBanks({ search } = {}) {
+export async function getGoogleWasteBanks({ lat, lng, radius, search, area } = {}) {
+  if (USE_REAL_API) {
+    const res = await http.get("/google/waste-banks", {
+      params: { lat, lng, radius, search, area },
+    });
+    return res.data;
+  }
+
   return getWasteBanks({ search });
 }
 
