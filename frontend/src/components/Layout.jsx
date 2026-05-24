@@ -9,6 +9,7 @@ const NAV = [
   { to: "/kalkulator", label: "Kalkulator Harga", code: "02" },
   { to: "/bank-sampah", label: "Direktori Bank Sampah", code: "03" },
   { to: "/price-list", label: "Price List", code: "04" },
+  { to: "/panduan", label: "Panduan Daur Ulang", code: "05" },
 ];
 
 export default function Layout() {
