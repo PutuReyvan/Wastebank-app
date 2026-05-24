@@ -2,6 +2,8 @@
 
 namespace Database\Seeders;
 
+use App\Models\WasteBank;
+use App\Models\WasteBankCatalog;
 use App\Models\WasteType;
 use Illuminate\Database\Seeder;
 
@@ -39,6 +41,93 @@ class DatabaseSeeder extends Seeder
                     'description' => $description,
                 ],
             );
+        }
+
+        $banks = [
+            [
+                'name' => 'Bank Sampah Melati Bersih',
+                'address' => 'Jl. Kembangan Raya No. 12, Kembangan Selatan, Kembangan',
+                'kelurahan' => 'Kembangan Selatan',
+                'kecamatan' => 'Kembangan',
+                'lat' => -6.1944,
+                'lng' => 106.7421,
+                'phone' => '021-58901234',
+                'whatsapp' => '081234567801',
+                'operating_hours' => 'Senin-Sabtu, 08.00-16.00',
+                'catalog' => [
+                    ['Botol PET Bening', 4800],
+                    ['Plastik Kresek (HDPE/LDPE)', 900],
+                    ['Kardus', 2300],
+                    ['Koran Bekas', 3000],
+                    ['Kaleng Aluminium', 14500],
+                ],
+            ],
+            [
+                'name' => 'Bank Sampah Hijau Lestari',
+                'address' => 'Jl. Daan Mogot Km. 14, Cengkareng Timur, Cengkareng',
+                'kelurahan' => 'Cengkareng Timur',
+                'kecamatan' => 'Cengkareng',
+                'lat' => -6.1456,
+                'lng' => 106.7261,
+                'phone' => '021-54321009',
+                'whatsapp' => '081234567802',
+                'operating_hours' => 'Senin-Jumat, 09.00-15.00',
+                'catalog' => [
+                    ['Botol PET Bening', 4500],
+                    ['Botol Plastik Berwarna', 2500],
+                    ['Kardus', 2200],
+                    ['Buku/HVS', 2000],
+                    ['Besi Bekas', 4600],
+                    ['Limbah Elektronik (E-waste)', 6500],
+                ],
+            ],
+            [
+                'name' => 'Bank Sampah Kebon Jeruk Sejahtera',
+                'address' => 'Jl. Pos Pengumben No. 45, Sukabumi Utara, Kebon Jeruk',
+                'kelurahan' => 'Sukabumi Utara',
+                'kecamatan' => 'Kebon Jeruk',
+                'lat' => -6.1908,
+                'lng' => 106.7726,
+                'phone' => '021-53651122',
+                'whatsapp' => '081234567803',
+                'operating_hours' => 'Senin-Sabtu, 07.30-16.00',
+                'catalog' => [
+                    ['Botol PET Bening', 4700],
+                    ['Plastik Kresek (HDPE/LDPE)', 850],
+                    ['Gelas Plastik', 3100],
+                    ['Kardus', 2300],
+                    ['Kaleng Aluminium', 14000],
+                    ['Tembaga', 76000],
+                ],
+            ],
+        ];
+
+        foreach ($banks as $data) {
+            $catalog = $data['catalog'];
+            unset($data['catalog']);
+
+            $bank = WasteBank::updateOrCreate(
+                ['name' => $data['name']],
+                array_merge($data, [
+                    'kota' => 'Jakarta Barat',
+                    'source_name' => 'Seed data',
+                    'is_active' => true,
+                ]),
+            );
+
+            WasteBankCatalog::where('waste_bank_id', $bank->id)->delete();
+            foreach ($catalog as [$wasteTypeName, $price]) {
+                $wasteType = WasteType::where('name', $wasteTypeName)->first();
+                if (!$wasteType) {
+                    continue;
+                }
+
+                WasteBankCatalog::create([
+                    'waste_bank_id' => $bank->id,
+                    'waste_type_id' => $wasteType->id,
+                    'price_per_kg' => $price,
+                ]);
+            }
         }
     }
 }

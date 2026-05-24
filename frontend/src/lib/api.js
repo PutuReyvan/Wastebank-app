@@ -1,5 +1,8 @@
 import axios from "axios";
-import { wasteTypes as mockWasteTypes } from "@/lib/mockData";
+import {
+  wasteTypes as mockWasteTypes,
+  wasteBanks as mockWasteBanks,
+} from "@/lib/mockData";
 
 const BACKEND_URL = process.env.REACT_APP_BACKEND_URL || "";
 const API_BASE = `${BACKEND_URL}/api`;
@@ -20,6 +23,21 @@ function paginate(items, page = 1, perPage = 100) {
       total: items.length,
     },
   };
+}
+
+function attachAccepted(bank) {
+  const accepted_types = (bank.catalog || []).map((catalog) => {
+    const wasteType = mockWasteTypes.find((type) => type.id === catalog.waste_type_id);
+    return {
+      waste_type_id: catalog.waste_type_id,
+      name: wasteType?.name || "Unknown",
+      category: wasteType?.category || "",
+      price_per_kg: catalog.price_per_kg,
+      updated_at: catalog.updated_at,
+    };
+  });
+  const { catalog, ...rest } = bank;
+  return { ...rest, accepted_types };
 }
 
 export async function getWasteTypes({ category, is_eligible } = {}) {
@@ -90,4 +108,53 @@ export async function calculateEstimate({ items }) {
       total_estimated: total,
     },
   };
+}
+
+export async function getWasteBanks({ waste_type_id, kecamatan, search } = {}) {
+  if (USE_REAL_API) {
+    const res = await http.get("/waste-banks", {
+      params: { waste_type_id, kecamatan, search },
+    });
+    return res.data;
+  }
+
+  let items = mockWasteBanks.filter((bank) => bank.is_active);
+  if (waste_type_id) {
+    const id = Number(waste_type_id);
+    items = items.filter((bank) => bank.catalog.some((catalog) => catalog.waste_type_id === id));
+  }
+  if (kecamatan && kecamatan !== "Semua") {
+    items = items.filter((bank) => bank.kecamatan === kecamatan);
+  }
+  if (search) {
+    const value = search.toLowerCase();
+    items = items.filter(
+      (bank) =>
+        bank.name.toLowerCase().includes(value) ||
+        bank.address.toLowerCase().includes(value) ||
+        bank.kecamatan.toLowerCase().includes(value),
+    );
+  }
+
+  return paginate(items.map(attachAccepted));
+}
+
+export async function getGoogleWasteBanks({ search } = {}) {
+  return getWasteBanks({ search });
+}
+
+export async function getWasteBank(id) {
+  if (USE_REAL_API) {
+    const res = await http.get(`/waste-banks/${id}`);
+    return res.data;
+  }
+
+  const bank = mockWasteBanks.find((item) => item.id === Number(id));
+  if (!bank) throw new Error("Bank sampah tidak ditemukan");
+  return { data: attachAccepted(bank) };
+}
+
+export function getKecamatanList() {
+  const values = new Set(mockWasteBanks.map((bank) => bank.kecamatan));
+  return ["Semua", ...Array.from(values).sort()];
 }
