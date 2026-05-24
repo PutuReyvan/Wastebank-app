@@ -4,6 +4,7 @@ import { BrowserRouter, Routes, Route } from "react-router-dom";
 import Layout from "@/components/Layout";
 import Katalog from "@/pages/Katalog";
 import KatalogDetail from "@/pages/KatalogDetail";
+import Kalkulator from "@/pages/Kalkulator";
 import NotFound from "@/pages/NotFound";
 
 function Home() {
@@ -14,8 +15,8 @@ function Home() {
         Baseline awal untuk katalog sampah, kalkulator, dan direktori bank sampah.
       </h1>
       <p className="text-base text-muted-foreground max-w-2xl leading-relaxed">
-        Fitur pertama yang masuk ke main adalah katalog referensi. Kalkulator dan direktori bank
-        sampah akan menyusul sebagai branch prioritas berikutnya.
+        Fitur katalog dan kalkulator sudah tersedia. Direktori bank sampah akan menyusul sebagai
+        branch prioritas berikutnya.
       </p>
     </div>
   );
@@ -30,6 +31,7 @@ export default function App() {
             <Route path="/" element={<Home />} />
             <Route path="/katalog" element={<Katalog />} />
             <Route path="/katalog/:id" element={<KatalogDetail />} />
+            <Route path="/kalkulator" element={<Kalkulator />} />
             <Route path="*" element={<NotFound />} />
           </Route>
         </Routes>
