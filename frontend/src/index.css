@@ -1,11 +1,125 @@
-* {
-  box-sizing: border-box;
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+/* === Pilah.in frontend theme ================== */
+
+@layer base {
+  :root {
+    /* Surfaces — clean light, content-first */
+    --background: 80 14% 97%;       /* #F7F8F4 — warm off-white */
+    --foreground: 150 28% 10%;      /* #142A1F — deep forest text */
+    --card: 0 0% 100%;              /* pure white */
+    --card-foreground: 150 28% 10%;
+    --popover: 0 0% 100%;
+    --popover-foreground: 150 28% 10%;
+    --muted: 90 15% 94%;            /* #EFF2EA */
+    --muted-foreground: 150 8% 38%; /* #5A6660 */
+    --accent: 90 15% 94%;
+    --accent-foreground: 150 28% 10%;
+
+    /* Brand: Forest Green (recycling, civic-trust) + Deep Forest accent */
+    --primary: 152 41% 30%;         /* #2D6A4F */
+    --primary-foreground: 0 0% 100%;
+    --secondary: 152 50% 18%;       /* #1B4332 — deep forest */
+    --secondary-foreground: 0 0% 100%;
+
+    /* Status */
+    --destructive: 4 70% 50%;
+    --destructive-foreground: 0 0% 100%;
+    --success: 152 41% 30%;
+    --warning: 30 80% 40%;
+
+    /* Borders / inputs */
+    --border: 100 12% 86%;          /* #DDE2D5 */
+    --input: 100 12% 86%;
+    --ring: 152 41% 30%;
+
+    /* Charts */
+    --chart-1: 152 41% 30%;
+    --chart-2: 152 50% 18%;
+    --chart-3: 100 30% 50%;
+    --chart-4: 200 40% 50%;
+    --chart-5: 30 70% 50%;
+
+    --radius: 0.5rem;
+  }
 }
 
-body {
-  margin: 0;
-  font-family: Inter, ui-sans-serif, system-ui, -apple-system, BlinkMacSystemFont,
-    "Segoe UI", sans-serif;
-  -webkit-font-smoothing: antialiased;
-  -moz-osx-font-smoothing: grayscale;
+@layer base {
+  * { @apply border-border; }
+  html { -webkit-text-size-adjust: 100%; }
+  body {
+    @apply bg-background text-foreground antialiased;
+    font-family: "Plus Jakarta Sans", ui-sans-serif, system-ui, -apple-system, sans-serif;
+  }
+  h1, h2, h3, h4, h5, h6 {
+    font-family: "Plus Jakarta Sans", ui-sans-serif, system-ui, sans-serif;
+    letter-spacing: -0.015em;
+  }
+  ::selection {
+    background: hsl(var(--primary) / 0.18);
+    color: hsl(var(--foreground));
+  }
 }
+
+@layer utilities {
+  .font-mono { font-family: "IBM Plex Mono", ui-monospace, "SFMono-Regular", monospace; }
+  .tabular-nums { font-variant-numeric: tabular-nums; }
+
+  .no-scrollbar::-webkit-scrollbar { display: none; }
+  .no-scrollbar { -ms-overflow-style: none; scrollbar-width: none; }
+
+  .shadow-card { box-shadow: 0 1px 2px rgba(20,42,31,0.04), 0 1px 3px rgba(20,42,31,0.04); }
+  .shadow-pop { box-shadow: 0 12px 32px -12px rgba(20,42,31,0.18); }
+
+  /* Government-style overline kicker */
+  .kicker {
+    font-family: "IBM Plex Mono", ui-monospace, monospace;
+    font-size: 0.6875rem;
+    letter-spacing: 0.14em;
+    text-transform: uppercase;
+    color: hsl(var(--muted-foreground));
+    font-weight: 500;
+  }
+
+  .hr-thin { border-top: 1px solid hsl(var(--border)); }
+  .hr-bold { border-top: 2px solid hsl(var(--foreground)); }
+}
+
+/* Article body for guide pages */
+.prose-id p { @apply text-foreground/80 leading-relaxed mb-4; font-size: 1.0625rem; }
+.prose-id h2 {
+  @apply mt-8 mb-3 text-xl font-bold text-foreground;
+  letter-spacing: -0.01em;
+}
+.prose-id ul { @apply list-disc pl-6 mb-4 text-foreground/80 leading-relaxed; }
+.prose-id ol { @apply list-decimal pl-6 mb-4 text-foreground/80 leading-relaxed; }
+.prose-id strong { @apply font-semibold text-foreground; }
+
+.ds-input {
+  width: 100%;
+  border-radius: 0.5rem;
+  border: 1px solid hsl(var(--border));
+  background: hsl(var(--card));
+  color: hsl(var(--foreground));
+  padding: 0.65rem 0.85rem;
+  font-size: 0.875rem;
+  outline: none;
+  transition: border-color 120ms ease, box-shadow 120ms ease;
+}
+.ds-input::placeholder { color: hsl(var(--muted-foreground)); }
+.ds-input:focus { border-color: hsl(var(--primary)); box-shadow: 0 0 0 3px hsl(var(--primary) / 0.12); }
+
+@layer base {
+  [data-debug-wrapper="true"] { display: contents !important; }
+  [data-debug-wrapper="true"] > * {
+    margin-left: inherit; margin-right: inherit; margin-top: inherit; margin-bottom: inherit;
+    padding-left: inherit; padding-right: inherit; padding-top: inherit; padding-bottom: inherit;
+    column-gap: inherit; row-gap: inherit; gap: inherit;
+    border-left-width: inherit; border-right-width: inherit; border-top-width: inherit; border-bottom-width: inherit;
+    border-left-style: inherit; border-right-style: inherit; border-top-style: inherit; border-bottom-style: inherit;
+    border-left-color: inherit; border-right-color: inherit; border-top-color: inherit; border-bottom-color: inherit;
+  }
+}
+

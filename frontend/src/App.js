@@ -1,17 +1,39 @@
-import "./App.css";
+import "@/App.css";
+import { BrowserRouter, Routes, Route } from "react-router-dom";
+
+import Layout from "@/components/Layout";
+import Katalog from "@/pages/Katalog";
+import KatalogDetail from "@/pages/KatalogDetail";
+import NotFound from "@/pages/NotFound";
+
+function Home() {
+  return (
+    <div className="space-y-5">
+      <div className="kicker">Bank Sampah ID</div>
+      <h1 className="text-3xl md:text-5xl font-extrabold text-foreground tracking-tight leading-tight">
+        Baseline awal untuk katalog sampah, kalkulator, dan direktori bank sampah.
+      </h1>
+      <p className="text-base text-muted-foreground max-w-2xl leading-relaxed">
+        Fitur pertama yang masuk ke main adalah katalog referensi. Kalkulator dan direktori bank
+        sampah akan menyusul sebagai branch prioritas berikutnya.
+      </p>
+    </div>
+  );
+}
 
 export default function App() {
   return (
-    <main className="app-shell">
-      <section className="hero">
-        <p className="eyebrow">Bank Sampah ID</p>
-        <h1>Wastebank App baseline</h1>
-        <p className="lead">
-          This repository starts with a runnable shell. Features such as catalog,
-          calculator, waste bank directory, vendor pages, guides, dashboard, and
-          admin tools should be added through focused pull requests.
-        </p>
-      </section>
-    </main>
+    <div className="App">
+      <BrowserRouter>
+        <Routes>
+          <Route element={<Layout />}>
+            <Route path="/" element={<Home />} />
+            <Route path="/katalog" element={<Katalog />} />
+            <Route path="/katalog/:id" element={<KatalogDetail />} />
+            <Route path="*" element={<NotFound />} />
+          </Route>
+        </Routes>
+      </BrowserRouter>
+    </div>
   );
 }
