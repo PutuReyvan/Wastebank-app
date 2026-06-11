@@ -65,7 +65,7 @@ export default function Kalkulator() {
     const lines = result.items.map(
       (it) => `• ${it.name}: ${it.weight_kg} kg × ${formatRp(it.price_per_kg)}/kg = ${formatRp(it.subtotal)}`,
     );
-    return `Estimasi nilai sampah daur ulang saya:\n\n${lines.join("\n")}\n\nTotal: ${formatRp(result.total_estimated)}\n\nDihitung di Pilah.in - direktori warga Jakarta Barat.`;
+    return `Estimasi nilai sampah daur ulang saya:\n\n${lines.join("\n")}\n\nTotal: ${formatRp(result.total_estimated)}\n\nDihitung di Pilah.in.`;
   };
 
   return (

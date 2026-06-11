@@ -2,6 +2,7 @@ import { useEffect, useState } from "react";
 import * as api from "@/lib/api";
 import GuideCard from "@/components/GuideCard";
 import PageHeader from "@/components/PageHeader";
+import { GuideCardSkeleton } from "@/components/SkeletonCards";
 
 export default function Panduan() {
   const [guides, setGuides] = useState([]);
@@ -25,7 +26,7 @@ export default function Panduan() {
       {loading ? (
         <div className="grid grid-cols-1 md:grid-cols-3 gap-3">
           {Array.from({ length: 6 }).map((_, i) => (
-            <div key={i} className="h-72 rounded bg-card border border-border animate-pulse" />
+            <GuideCardSkeleton key={i} />
           ))}
         </div>
       ) : (

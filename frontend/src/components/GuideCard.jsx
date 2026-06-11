@@ -14,6 +14,9 @@ export default function GuideCard({ guide }) {
             src={guide.cover_image_url}
             alt={guide.title}
             loading="lazy"
+            onError={(event) => {
+              event.currentTarget.src = "/images/guides/recycling.svg";
+            }}
             className="w-full h-full object-cover"
           />
         </div>
