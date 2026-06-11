@@ -7,15 +7,18 @@ import FilterChips from "@/components/FilterChips";
 import EmptyState from "@/components/EmptyState";
 import PageHeader from "@/components/PageHeader";
 import WasteTypeModal from "@/components/WasteTypeModal";
+import { WasteTypeRowSkeleton } from "@/components/SkeletonCards";
 
 export default function Katalog() {
   const [items, setItems] = useState([]);
   const [category, setCategory] = useState("Semua");
   const [search, setSearch] = useState("");
   const [picked, setPicked] = useState(null);
+  const [loading, setLoading] = useState(true);
 
   useEffect(() => {
-    api.getWasteTypes({ category }).then((r) => setItems(r.data));
+    setLoading(true);
+    api.getWasteTypes({ category }).then((r) => setItems(r.data)).finally(() => setLoading(false));
   }, [category]);
 
   const filtered = useMemo(() => {
@@ -56,7 +59,26 @@ export default function Katalog() {
         />
       </div>
 
-      {filtered.length === 0 ? (
+      {loading ? (
+        <div className="rounded border border-border bg-card overflow-hidden">
+          <table className="w-full text-sm">
+            <thead className="bg-muted/60 text-foreground">
+              <tr className="kicker">
+                <th className="px-4 py-2.5 text-left font-medium w-12">#</th>
+                <th className="px-4 py-2.5 text-left font-medium">Jenis Sampah</th>
+                <th className="px-4 py-2.5 text-left font-medium hidden md:table-cell">Kategori</th>
+                <th className="px-4 py-2.5 text-left font-medium hidden sm:table-cell">Status</th>
+                <th className="px-4 py-2.5 text-right font-medium">Estimasi / kg</th>
+              </tr>
+            </thead>
+            <tbody>
+              {Array.from({ length: 8 }).map((_, i) => (
+                <WasteTypeRowSkeleton key={i} />
+              ))}
+            </tbody>
+          </table>
+        </div>
+      ) : filtered.length === 0 ? (
         <EmptyState
           icon={PackageSearch}
           title="Tidak ada hasil"

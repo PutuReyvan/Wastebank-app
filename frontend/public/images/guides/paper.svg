@@ -1,0 +1,19 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1200 800" role="img" aria-label="Kardus dan kertas daur ulang">
+  <rect width="1200" height="800" fill="#f4efe6"/>
+  <circle cx="1020" cy="140" r="180" fill="#e5d2ad"/>
+  <circle cx="170" cy="690" r="240" fill="#eadbbf"/>
+  <g transform="translate(250 210)" stroke="#6b5432" stroke-width="14" stroke-linejoin="round">
+    <path d="M80 130h470l-70 310H150Z" fill="#c89554"/>
+    <path d="M80 130 210 45h470l-130 85Z" fill="#d8a869"/>
+    <path d="M550 130 680 45l-70 310-130 85Z" fill="#b77b3d"/>
+    <path d="M210 45 150 440" fill="none" opacity=".35"/>
+    <path d="M80 130h470" fill="none"/>
+  </g>
+  <g transform="translate(715 270)" fill="#fffaf0" stroke="#6b5432" stroke-width="10">
+    <rect x="0" y="0" width="240" height="320" rx="12"/>
+    <rect x="35" y="55" width="170" height="16" rx="8" fill="#6b5432" opacity=".35" stroke="none"/>
+    <rect x="35" y="105" width="150" height="16" rx="8" fill="#6b5432" opacity=".25" stroke="none"/>
+    <rect x="35" y="155" width="180" height="16" rx="8" fill="#6b5432" opacity=".25" stroke="none"/>
+  </g>
+  <text x="310" y="655" fill="#5f4528" font-family="Arial, sans-serif" font-size="44" font-weight="700">Kertas kering bernilai lebih</text>
+</svg>

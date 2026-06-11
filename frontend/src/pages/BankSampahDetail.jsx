@@ -37,7 +37,7 @@ export default function BankSampahDetail() {
           { label: "Bank Sampah", to: "/bank-sampah" },
           { label: bank.name },
         ]}
-        kicker={`Bank Sampah - ${bank.kecamatan}`}
+        kicker={`Bank Sampah · ${bank.kecamatan}`}
         title={bank.name}
       />
 
@@ -107,7 +107,7 @@ export default function BankSampahDetail() {
                 <td className="px-4 py-3">
                   <div className="font-semibold text-foreground">{t.name}</div>
                   <div className="text-[11px] text-muted-foreground mt-0.5">
-                    {t.category} - diperbarui {formatRelativeId(t.updated_at)}
+                    {t.category} · diperbarui {formatRelativeId(t.updated_at)}
                   </div>
                 </td>
                 <td className="px-4 py-3 text-right font-bold tabular-nums text-primary whitespace-nowrap">

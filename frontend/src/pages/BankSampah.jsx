@@ -7,6 +7,7 @@ import PageHeader from "@/components/PageHeader";
 import WasteBankModal from "@/components/WasteBankModal";
 import { cn } from "@/lib/utils";
 import { googlePlaceEmbedUrl } from "@/lib/maps";
+import { WasteBankCardSkeleton } from "@/components/SkeletonCards";
 
 const DEFAULT_AREA = "Jakarta Barat";
 const DEFAULT_QUERY = "bank sampah";
@@ -97,7 +98,7 @@ export default function BankSampah() {
         breadcrumbs={[{ label: "Beranda", to: "/" }, { label: "Direktori Bank Sampah" }]}
         kicker="03 / Lokasi Setor"
         title="Direktori Bank Sampah"
-        subtitle="Temukan lokasi bank sampah aktif beserta katalog sampah yang diterima."
+        subtitle="Data lokasi diambil langsung dari Google Maps melalui backend Pilah.in."
         action={
           <div className="flex gap-1 rounded border border-border bg-card p-1">
             <button
@@ -140,9 +141,9 @@ export default function BankSampah() {
 
       <div className="mb-6 rounded border border-border bg-card p-4 flex flex-col gap-3 md:flex-row md:items-center md:justify-between">
         <div>
-          <div className="text-sm font-bold text-foreground">Data lokasi bank sampah</div>
+          <div className="text-sm font-bold text-foreground">Data realtime Google Maps</div>
           <div className="text-xs text-muted-foreground mt-1">
-            Peta memakai Google Maps embed. API key hanya diperlukan kalau fitur Places realtime ditambahkan nanti.
+            Tanpa mockup: hasil berasal dari Google Places API dan berubah mengikuti data Google Maps.
           </div>
           {locationStatus && (
             <div className="text-xs text-primary mt-2" data-testid="bank-location-status">
@@ -184,19 +185,19 @@ export default function BankSampah() {
         <MapView banks={banks} onSelect={setPicked} userLocation={userLocation} loading={loading} />
       ) : loading ? (
         <div className="space-y-3">
-          {Array.from({ length: 3 }).map((_, index) => (
-            <div key={index} className="h-24 rounded bg-card border border-border animate-pulse" />
+          {Array.from({ length: 5 }).map((_, index) => (
+            <WasteBankCardSkeleton key={index} />
           ))}
         </div>
       ) : banks.length === 0 ? (
         <EmptyState
           icon={MapPinOff}
-          title="Belum ada hasil"
+          title="Belum ada hasil Google Maps"
           description="Coba kata kunci lain atau aktifkan lokasi perangkat."
         />
       ) : (
         <div className="space-y-2.5">
-          <div className="kicker pb-1">Menampilkan {banks.length} bank sampah</div>
+          <div className="kicker pb-1">Menampilkan {banks.length} hasil dari Google Maps</div>
           {banks.map((bank) => (
             <WasteBankCard key={bank.id} bank={bank} onSelect={setPicked} />
           ))}
@@ -248,7 +249,11 @@ function MapView({ banks, onSelect, userLocation, loading }) {
       )}
 
       {loading ? (
-        <div className="h-24 rounded bg-card border border-border animate-pulse" />
+        <div className="space-y-3">
+          {Array.from({ length: 3 }).map((_, i) => (
+            <WasteBankCardSkeleton key={i} />
+          ))}
+        </div>
       ) : (
         <div className="space-y-2.5">
           {banks.map((bank) => (

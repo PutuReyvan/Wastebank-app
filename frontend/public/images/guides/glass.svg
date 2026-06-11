@@ -1,0 +1,14 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1200 800" role="img" aria-label="Botol kaca dipilah berdasarkan warna">
+  <rect width="1200" height="800" fill="#edf8f4"/>
+  <circle cx="990" cy="150" r="190" fill="#cce7dc"/>
+  <circle cx="180" cy="680" r="240" fill="#d8efe7"/>
+  <g transform="translate(265 115)" stroke="#2c5b48" stroke-width="14">
+    <path d="M120 40h92v115c0 40 70 74 70 150v235c0 42-38 76-116 76S50 582 50 540V305c0-76 70-110 70-150Z" fill="#dff7ef"/>
+    <rect x="122" y="35" width="88" height="60" rx="14" fill="#2f6f54"/>
+    <path d="M380 40h92v115c0 40 70 74 70 150v235c0 42-38 76-116 76s-116-34-116-76V305c0-76 70-110 70-150Z" fill="#e7d9b4"/>
+    <rect x="382" y="35" width="88" height="60" rx="14" fill="#6f5b2f"/>
+    <path d="M640 40h92v115c0 40 70 74 70 150v235c0 42-38 76-116 76s-116-34-116-76V305c0-76 70-110 70-150Z" fill="#c9e4cf"/>
+    <rect x="642" y="35" width="88" height="60" rx="14" fill="#366f2f"/>
+  </g>
+  <text x="300" y="705" fill="#24513e" font-family="Arial, sans-serif" font-size="42" font-weight="700">Bening, cokelat, hijau: pisahkan</text>
+</svg>

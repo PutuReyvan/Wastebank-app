@@ -1,0 +1,16 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1200 800" role="img" aria-label="Kompos dari sampah organik">
+  <rect width="1200" height="800" fill="#eef7e8"/>
+  <circle cx="1010" cy="145" r="180" fill="#d5eac9"/>
+  <circle cx="170" cy="690" r="240" fill="#dcefd2"/>
+  <g transform="translate(250 180)">
+    <path d="M130 210h520l-65 350H195Z" fill="#8b5e3c" stroke="#4c3b2b" stroke-width="14" stroke-linejoin="round"/>
+    <path d="M105 190h570v65H105z" fill="#6f4b30" stroke="#4c3b2b" stroke-width="14" stroke-linejoin="round"/>
+    <path d="M330 185c-8-100 55-160 150-165 6 103-63 163-150 165Z" fill="#55a567"/>
+    <path d="M390 185c60-80 146-85 220-32-57 82-144 86-220 32Z" fill="#75bd73"/>
+    <path d="M360 188c-36-80-5-153 78-193 37 84 2 156-78 193Z" fill="#2f8a5a"/>
+    <circle cx="255" cy="365" r="34" fill="#c78a4d"/>
+    <circle cx="360" cy="430" r="28" fill="#d7a65e"/>
+    <circle cx="505" cy="350" r="38" fill="#b97345"/>
+  </g>
+  <text x="300" y="690" fill="#315f3d" font-family="Arial, sans-serif" font-size="42" font-weight="700">Organik bisa jadi kompos</text>
+</svg>

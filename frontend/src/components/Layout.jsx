@@ -1,19 +1,30 @@
-import { useState } from "react";
-import { Outlet, Link, NavLink } from "react-router-dom";
+import { useEffect, useState } from "react";
+import { Outlet, Link, NavLink, useLocation, useNavigate } from "react-router-dom";
 import { Menu, X, Recycle } from "lucide-react";
 import { cn } from "@/lib/utils";
+import { isAdminSubdomain } from "@/lib/subdomain";
 
 const NAV = [
   { to: "/", label: "Beranda", code: "00" },
   { to: "/katalog", label: "Katalog Sampah", code: "01" },
   { to: "/kalkulator", label: "Kalkulator Harga", code: "02" },
   { to: "/bank-sampah", label: "Direktori Bank Sampah", code: "03" },
-  { to: "/price-list", label: "Price List", code: "04" },
+  { to: "/vendor", label: "Direktori Vendor", code: "04" },
   { to: "/panduan", label: "Panduan Daur Ulang", code: "05" },
 ];
 
 export default function Layout() {
   const [open, setOpen] = useState(false);
+  const { pathname } = useLocation();
+  const nav = useNavigate();
+  const onAdminSub = isAdminSubdomain();
+
+  // Keep React routes predictable if this bundle is ever served on admin.*.
+  useEffect(() => {
+    if (onAdminSub && pathname !== "/admin") {
+      nav("/admin", { replace: true });
+    }
+  }, [onAdminSub, pathname, nav]);
 
   return (
     <div className="relative min-h-screen flex flex-col">
@@ -29,7 +40,7 @@ export default function Layout() {
               <div className="font-bold tracking-tight text-foreground">
                 Pilah<span className="text-primary">.in</span>
               </div>
-              <div className="kicker hidden sm:block">Direktori Warga - Jakarta Barat</div>
+              <div className="kicker hidden sm:block">Direktori Daur Ulang</div>
             </div>
           </Link>
 
@@ -52,7 +63,7 @@ export default function Layout() {
       <footer className="relative z-10 border-t border-border bg-card">
         <div className="max-w-md mx-auto md:max-w-6xl px-4 md:px-8 py-6 flex items-center justify-between text-xs text-muted-foreground">
           <span>2026 Pilah.in</span>
-          <span>Direktori daur ulang Jakarta Barat</span>
+          <span>Direktori daur ulang</span>
         </div>
       </footer>
 
