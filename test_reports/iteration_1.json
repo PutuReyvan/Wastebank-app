@@ -1,0 +1,51 @@
+{
+  "summary": "Frontend-only e2e test of Bank Sampah civic directory (mock-API mode). Tested all critical flows on mobile (390x844) + desktop (1280x800). 30/30 frontend checks PASSED across two browser runs. All routes render, bottom nav works, calculator produces correct estimates (Rp 9.000 for 2 kg PET @ Rp 4.500/kg), bank/vendor/guide CRUD-style mock flows work, login -> dashboard with localStorage token persists, logout clears session, 404/admin pages render, currency uses Indonesian dot format (Rp X.XXX). No backend tests were run per request (USE_REAL_API=false; Laravel backend not yet implemented).",
+  "backend_issues": {
+    "critical": [],
+    "minor": []
+  },
+  "frontend_issues": {
+    "ui_bugs": [],
+    "integration_issues": [],
+    "design_issues": [
+      {"screen": "Kalkulator (DOM only, not visible)", "issues": ["React hydration warning in console: '<span> cannot be a child of <option>'. Originates from Emergent runtime overlay injecting <span data-ve-dynamic> wrappers into <option> children inside the Kalkulator <select>. Not from app source (Kalkulator.jsx renders plain text {t.name} · {formatRp(...)}). Cosmetic console warning only - rendering, selection, and live total all work correctly. May want to flag to platform team or wrap option text in a way that avoids the wrapper."]}
+    ]
+  },
+  "test_report_links": [],
+  "action_items": [
+    "(Optional) Investigate React hydration warning about <span> inside <option> in /kalkulator caused by emergent visualizer overlay. App functions correctly; warning only.",
+    "(Optional) Verify dashboard 'success flash' wording after Save Profile / Save Catalog - automated check did not find the literal word 'berhasil' on the page after save click. Button click succeeded with no error. If a flash exists, confirm it has a data-testid (e.g., dashboard-profile-flash) for easier future testing.",
+    "When the Laravel backend is wired (USE_REAL_API=true), re-run this iteration to validate real API contracts."
+  ],
+  "critical_code_review_comments": [
+    "/app/frontend/src/lib/api.js: updateWasteBankProfile and replaceWasteBankCatalog mutate the in-memory mock arrays (Object.assign + push). Acceptable for FE-only mock, but data resets on full page reload. Document this clearly so QA knows changes are non-persistent.",
+    "/app/frontend/src/lib/api.js: USE_REAL_API hard-coded to false. Consider reading from env (e.g., REACT_APP_USE_REAL_API) so backend cutover is a one-line .env change.",
+    "Kalkulator.jsx <option> children use template syntax `{t.name} · {formatRp(...)}` which is rendered fine, but Emergent's runtime injects <span> wrappers causing a React hydration warning. Consider {`${t.name} · ${formatRp(t.reference_price_per_kg)}/kg`} as a single string literal to avoid wrapping.",
+    "All interactive elements correctly use kebab-case data-testid attributes - excellent test surface coverage.",
+    "Mobile-first layout passes: no horizontal scroll at 375/390px; bottom nav fixed and does not overlap thanks to pb-bottomnav padding."
+  ],
+  "updated_files": [],
+  "success_rate": {"backend": "skipped (frontend-only iteration)", "frontend": "100% (30/30 checks)"},
+  "test_credentials": "Bank login demo: melati@banksampah.id / demo1234 (verified working).",
+  "seed_data_creation": "None - all data comes from /app/frontend/src/lib/mockData.js (8 banks, 16 waste types, 5 vendors, 6 guides, 2 bank users).",
+  "retest_needed": false,
+  "main_agent_can_self_test": true,
+  "context_for_next_testing_agent": "FE is fully working in mock mode. When backend lands, flip USE_REAL_API=true (or env-driven) and re-test the same 30 flows. Critical mock-only gotchas: dashboard profile/catalog edits do NOT persist across page reload (in-memory mock). Login token is real localStorage. Currency formatting via formatRp confirmed correct (Indonesian dots). Map view uses public Google Maps embed (no API key needed, REACT_APP_GOOGLE_MAPS_EMBED_KEY in .env is empty - that's fine for current implementation).",
+  "tests_executed": [
+    "Home: hero CTAs, quick actions, featured banks (3), recent guides (3), no h-scroll",
+    "Bottom nav: 5 tabs render, active state highlights with text-primary on /kalkulator",
+    "Katalog: 16 cards rendered, Plastik chip filter clicks, search 'Botol' filters to 2 results, card opens detail",
+    "Katalog detail: shows Rp 4.500/kg formatted correctly",
+    "Kalkulator: live total updates on type+weight (2kg PET = Rp 9.000), add-row works (1->2 rows), Hitung Estimasi shows breakdown",
+    "Bank Sampah: 8 cards render, Map iframe loads, search empty state 'Belum ada bank sampah' shown for no-match",
+    "Bank detail: wa.me, tel:, google.com/maps links + 'diperbarui' relative time present",
+    "Vendor: 5 cards with wa.me, NGO/Bisnis badges shown, detail has wa+tel",
+    "Panduan: 6 cards, detail renders 3 h2 sections (markdown-like content)",
+    "Login: wrong password shows 'Email atau kata sandi salah', correct creds nav to /dashboard, localStorage tokens persist (bs_token, bs_bank_id=1)",
+    "Dashboard: profile-save, catalog-save, logout buttons all present; logout clears localStorage and redirects to /login",
+    "404: unknown route renders 404 page",
+    "Admin: /admin renders Filament info stub",
+    "Currency: Rp 4.500 / Rp 2.500 / Rp 3.000 (dot separator) - no comma format detected",
+    "Desktop 1280x800: no horizontal scroll on home"
+  ]
+}

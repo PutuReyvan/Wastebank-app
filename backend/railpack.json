@@ -1,0 +1,23 @@
+{
+  "$schema": "https://schema.railpack.com",
+  "packages": {
+    "php": "8.4"
+  },
+  "buildAptPackages": [
+    "autoconf",
+    "bison",
+    "libgd-dev",
+    "libicu-dev",
+    "libcurl4-openssl-dev",
+    "libonig-dev",
+    "libpq-dev",
+    "libreadline-dev",
+    "libsqlite3-dev",
+    "libssl-dev",
+    "libxml2-dev",
+    "libzip-dev",
+    "pkg-config",
+    "zlib1g-dev",
+    "re2c"
+  ]
+}

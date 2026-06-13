@@ -1,0 +1,47 @@
+{
+  "summary": "Frontend regression test of the FULL DARK + EDITORIAL REDESIGN of Bank Sampah ID (mock-API mode). Tested both desktop (1280x900) and mobile (390x844). Verified all 21 review items: hamburger nav (open/close/backdrop), removal of bottom nav, editorial hero with Instrument Serif headline + 2 CTAs, 4 netflix horizontal rows on home with working scroll arrows, modal-based waste-type and bank-sampah card interactions (open/close/CTAs), Katalog 6-row category layout + grid-on-search, Bank Sampah list (kecamatan rows) + Map (Google Maps iframe) toggle, Vendor business/ngo netflix rows + wa.me deep link, Panduan grid + detail navigation, Kalkulator multi-row builder with live total Rp 9.000 for 2kg PET + calc-result + new calc-share-wa WhatsApp deep link, Bank login (wrong=inline error, correct=redirect to /dashboard, localStorage bs_token persisted), Dashboard profile-save flash 'berhasil', logout clears tokens, 404 page, footer admin link, mobile no-horizontal-scroll, mobile slide-up modal with drag handle. All 30+ checks PASSED. No console/page errors.",
+  "backend_issues": {
+    "critical": [],
+    "minor": []
+  },
+  "frontend_issues": {
+    "ui_bugs": [],
+    "integration_issues": [],
+    "design_issues": []
+  },
+  "test_report_links": [],
+  "action_items": [
+    "(Optional cleanup) /app/frontend/src/components/BottomNav.jsx still exists in the codebase but is no longer imported anywhere. Safe to delete to keep the components folder lean.",
+    "(Optional) When the Laravel backend is wired (REACT_APP_USE_REAL_API=true), re-run this iteration to validate real API contracts."
+  ],
+  "critical_code_review_comments": [
+    "Layout.jsx hamburger sheet uses opacity + pointer-events to hide the panel and overlay (instead of conditionally rendering). This works correctly but means automated tests must check class state (opacity-0 / pointer-events-none) rather than DOM removal — not a bug, just a testing note for future agents.",
+    "Modal.jsx similarly keeps modal in DOM with opacity transitions when closed; close behavior verified via class assertion. Consider a portal + conditional unmount only if accessibility / focus-trap becomes an issue.",
+    "Kalkulator row uids are random (Math.random().toString(36)) so data-testids like calc-row-{uid}-weight cannot be referenced by a stable id. For deterministic e2e, consider a stable index (calc-row-0-weight) or expose row index alongside uid. Tests work via attribute-starts-with selectors today.",
+    "Each HorizontalRow renders 3 testIds (section + arrow-left + arrow-right) sharing the same testId prefix. Selectors like [data-testid^='row-cat-'] therefore match 3x the row count — minor caveat for future testing agents.",
+    "Excellent dark-mode contrast: terracotta primary (#F26B3A) on cream foreground, lime accent legible. Instrument Serif loads (verified via screenshot of headline). Currency formatting Rp X.XXX (Indonesian dot) preserved (Rp 9.000 verified)."
+  ],
+  "updated_files": [],
+  "success_rate": {"backend": "skipped (frontend-only iteration)", "frontend": "100% (all checks passed across 2 browser runs)"},
+  "test_credentials": "Bank login demo: melati@banksampah.id / demo1234 (verified working, redirects to /dashboard, sets bs_token in localStorage).",
+  "seed_data_creation": "None - all data from /app/frontend/src/lib/mockData.js (8 banks, 16 waste types, 5 vendors, 6 guides). Confirmed unchanged from iteration 1.",
+  "retest_needed": false,
+  "main_agent_can_self_test": true,
+  "context_for_next_testing_agent": "Iteration 2 confirms the full dark-editorial redesign works end-to-end with the mock API. Key things verified vs iteration 1 differences: (1) bottom nav fully removed (no fixed nav.bottom-0 in DOM), (2) hamburger top-right with 6 nav items + Portal/Admin works including backdrop & nav-link auto-close, (3) modals open on waste-card and bank-card clicks (deep-link routes /katalog/:id and /bank-sampah/:id still exist as fallback for the bank modal's 'Buka halaman lengkap →' link), (4) horizontal netflix rows render with arrows, (5) calc-share-wa appears after Hitung Estimasi and links to wa.me. When backend cuts over, just re-run the same flows. Selectors-to-know: hamburger-nav uses pattern 'hamburger-nav--katalog' (double dash because to='/katalog' becomes '-katalog'). Modal close = data-testid='waste-modal-close' / 'bank-modal-close'. Calculator weight inputs need attribute^=/$= selectors due to random uid.",
+  "tests_executed": [
+    "Home: editorial hero headline + italic primary parts visible, 2 CTA pills, 4 netflix rows with arrow-left/right (scroll worked)",
+    "No bottom nav in DOM (search for nav.fixed.bottom-0 returned 0)",
+    "Hamburger: open via data-testid='hamburger-open', 6 nav items + Portal + Admin visible, click Katalog navigates and panel transitions to opacity-0/pointer-events-none",
+    "Katalog: 6 category netflix rows by default; search 'Botol' returns 4 cards in grid; clicking a card opens waste-modal with calc + banks CTAs",
+    "Waste modal close via X button transitions to closed (opacity-0 + pointer-events-none)",
+    "Bank Sampah: List/Peta toggle works, Peta shows bank-map-iframe (Google Maps embed), List shows kecamatan netflix rows, click bank card opens bank-modal with WA + detail-link, detail-link navigates to /bank-sampah/1",
+    "Vendor: row-vendor-business + row-vendor-ngo render, wa.me deep link verified on first vendor card",
+    "Panduan: 6 guide cards, click navigates to /panduan/1",
+    "Kalkulator: select PET + 2 kg = live total Rp 9.000, Hitung Estimasi shows calc-result + calc-share-wa with wa.me href, calc-add-row adds row (1->2)",
+    "Login: wrong password shows inline error, correct creds (melati@banksampah.id / demo1234) navigates to /dashboard, localStorage bs_token set",
+    "Dashboard: profile save shows dashboard-flash with text containing 'berhasil', logout clears localStorage and redirects to /login",
+    "404 unknown route renders 404",
+    "Footer admin link visible and clickable on every page",
+    "Mobile 390x844: body scrollWidth <= 390 (no h-scroll), waste-modal slides up with drag-handle visible at top"
+  ]
+}

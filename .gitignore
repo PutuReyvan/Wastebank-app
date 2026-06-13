@@ -84,8 +84,6 @@ android-sdk/-e
 .env
 .env.*
 *.env
-!.env.example
-!**/.env.example
 credentials.json
 *.pem
 *.key
@@ -95,8 +93,6 @@ credentials.json
 .env
 .env.*
 *.env
-!.env.example
-!**/.env.example
 credentials.json
 *.pem
 *.key
@@ -105,11 +101,4 @@ credentials.json
 # Local tooling artifacts
 tools/composer.phar
 tools/*.cookies
-
-# Local planning and generated task artifacts
-memory/
-PRD.md
-**/PRD.md
-test_result.md
-/test_reports/
-/tests/
+memory/PRD.md

@@ -9,15 +9,9 @@ class WasteBankCatalog extends Model
 {
     protected $table = 'waste_bank_catalog';
 
-    protected $fillable = [
-        'waste_bank_id',
-        'waste_type_id',
-        'price_per_kg',
-    ];
+    protected $fillable = ['waste_bank_id', 'waste_type_id', 'price_per_kg'];
 
-    protected $casts = [
-        'price_per_kg' => 'decimal:2',
-    ];
+    protected $casts = ['price_per_kg' => 'decimal:2'];
 
     public function wasteBank(): BelongsTo
     {

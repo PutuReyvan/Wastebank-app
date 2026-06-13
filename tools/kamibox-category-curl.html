@@ -1,0 +1,329 @@
+
+
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <!-- <meta name="viewport" content="width=device-width, initial-scale=1 , maximum-scale=1.0, user-scalable=no"> -->
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no" />
+    <link rel="icon" href="https://kamibox.id/images/favicon.png">
+    <title>Kamibox</title>
+    <meta name="description"
+        content="PT. Kamibox Maju Sejahtera didirikan pada tahun 2020 Merupakan perusahaan yang bergerak di bidang pengangkutan dan penerimaan sampah daur ulang, yang berfokus untuk sampah kardus dan kertas, maupun sampah daur ulang lainnya. Untuk saat ini Kamibox menyediakan pelayanan di DKI Jakarta dan Tangerang Raya.">
+    <meta name="facebook-domain-verification" content="ceclc9lmtui8s5bx4wk64t1q556m2u" />
+    <link rel="stylesheet" href="https://kamibox.id/css/bootstrap.min.css" crossorigin="anonymous">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/Swiper/4.3.5/css/swiper.min.css">
+    <link rel="stylesheet" type="text/css" href="https://kamibox.id/css/swiper.min.css">
+    <link rel="stylesheet" type="text/css" href="https://kamibox.id/css/jquery.fancybox.min.css">
+    <!-- <link rel="stylesheet" href="https://kamibox.id/plugins/font-awesome-4.7.0/css/font-awesome.min.css"> -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.2.0/css/all.min.css">
+    <link rel="stylesheet" type="text/css" href="https://kamibox.id/css/style.css?v=1.0.0">
+    <link rel="stylesheet" type="text/css" href="https://kamibox.id/css/responsive.css?v=1.0.0">
+    <link rel="stylesheet" type="text/css" href="https://kamibox.id/css/animate.css">
+
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link
+        href="https://fonts.googleapis.com/css2?family=Rubik:ital,wght@0,300;0,400;0,600;0,700;1,300;1,400;1,600;1,700&display=swap"
+        rel="stylesheet">
+
+    <!-- <script src="https://unpkg.com/sweetalert/dist/sweetalert.min.js"></script> -->
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/sweetalert/2.1.2/sweetalert.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/Swiper/4.3.5/js/swiper.min.js"></script>
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.4.0/jquery.min.js"></script>
+    <script src="https://kamibox.id/js/jquery.3.4.0.min.js"></script>
+    <script src="https://kamibox.id/js/bootstrap.min.js"></script>
+    <script src="https://kamibox.id/js/jquery.fancybox.min.js"></script>
+    <script src="https://kamibox.id/js/wow.js"></script>
+    <script src="https://kamibox.id/js/jquery-ui.js"></script>
+    <link rel="stylesheet" href="https://kamibox.id/css/jquery-ui.css">
+    <script src="https://kamibox.id/js/jquery.number.min.js"></script>
+    <script src="https://kamibox.id/js/main.js"></script>
+    <script src="https://kamibox.id/js/lottie-player.js"></script>
+    <script src="https://kamibox.id/js/sweetalert.min.js"></script>
+    <script src="https://kamibox.id/js/swiper.min.js"></script>
+
+    <!-- select2 -->
+    <link href="https://cdn.jsdelivr.net/npm/select2@4.1.0-rc.0/dist/css/select2.min.css" rel="stylesheet" />
+    <script src="https://cdn.jsdelivr.net/npm/select2@4.1.0-rc.0/dist/js/select2.min.js"></script>
+    <meta name="csrf-token" content="niD0to4J39jTezoFcZAeWSbCx8woFR0dk7KCahe1">
+    <script>
+        // setup ajax global csrf
+        $.ajaxSetup({
+            headers: {
+                'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content')
+            }
+        });
+    </script>
+    <style>
+        .modal {
+            z-index: 99 !important;
+        }
+
+        .modal-backdrop {
+            z-index: 10 !important;
+        }
+    </style>
+    <!-- Google tag (gtag.js) -->
+    <script async src="https://www.googletagmanager.com/gtag/js?id=UA-173109533-1"></script>
+    <script>
+        window.dataLayer = window.dataLayer || [];
+
+        function gtag() {
+            dataLayer.push(arguments);
+        }
+        gtag('js', new Date());
+
+        gtag('config', 'UA-173109533-1');
+    </script>
+    
+    <!-- Google tag (gtag.js) -->
+    <script async src="https://www.googletagmanager.com/gtag/js?id=AW-613068557"></script>
+    <script>
+      window.dataLayer = window.dataLayer || [];
+      function gtag(){dataLayer.push(arguments);}
+      gtag('js', new Date());
+    
+      gtag('config', 'AW-613068557');
+    </script>
+    <!-- Google Tag Manager -->
+<script>(function(w,d,s,l,i){w[l]=w[l]||[];w[l].push({'gtm.start':
+new Date().getTime(),event:'gtm.js'});var f=d.getElementsByTagName(s)[0],
+j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
+'https://www.googletagmanager.com/gtm.js?id='+i+dl;f.parentNode.insertBefore(j,f);
+})(window,document,'script','dataLayer','GTM-K2S49QS2');</script>
+<!-- End Google Tag Manager -->
+
+</head>
+
+<body>
+    <!-- Google Tag Manager (noscript) -->
+<noscript><iframe src="https://www.googletagmanager.com/ns.html?id=GTM-K2S49QS2"
+height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
+<!-- End Google Tag Manager (noscript) -->
+
+    <header>
+        <nav id="navigation">
+            <div class="container-fluid container-nav">
+                <a href="https://kamibox.id" class="logo">
+                    <img class="navbar-logo" src="https://kamibox.id/images/logo-type.png">
+                </a>
+                <a aria-label="mobile menu" class="nav-toggle">
+                    <span></span>
+                    <span></span>
+                    <span></span>
+                </a>
+                <ul class="menu-right">
+                    <li><a href="https://kamibox.id/about">Tentang Kami</a></li>
+                    <li><a href="https://kamibox.id/service">Layanan</a></li>
+                    <li><a href="https://kamibox.id/category">Kategori</a></li>
+                    <li><a href="https://kamibox.id/contact">Lokasi & Kontak</a></li>
+                                            
+                        <li><a href="https://kamibox.id/register">Signup</a></li>
+                                    </ul>
+            </div>
+        </nav>
+    </header>
+
+        <section class="section-category-hero">
+        <div class="container-fluid no-pad overflow-hidden">
+            <div class="row">
+                <div class="col-xs-12 col-sm-12 col-md-12 col-lg-12">
+                    <div class="subject-heading text-center">
+                        <h2 class="box-category no-transform bold">
+                            Cek Kategori & Harga Sampah yang Bisa Kamu Tukarkan di Kamibox
+                        </h2>
+                    </div>
+                </div>
+                <div class="col-xs-12 col-sm-12 col-md-12 col-lg-12">
+                    <div class="about-hero">
+                        <lottie-player src="https://kamibox.id/images/category/hero/data.json" autoplay loop></lottie-player>
+                        <!-- <img src="https://kamibox.id/images/category/category-hero.png" alt="Assets Kamibox"> -->
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+    <section class="section-category-search">
+        <div class="container">
+            <div class="row">
+                <div class="col-xs-12 col-sm-12 col-md-12 col-lg-12">
+                    <div class="subject-heading text-center">
+                        <h2 class="box-category no-transform bold">
+                            Cari Sampahmu
+                        </h2>
+                    </div>
+                    <div class="category-search">
+                        <input type="text" onblur="_search()" name="search_category" class="form-control"
+                            placeholder="Contoh: Kardus, Plastik, Sterofom">
+                    </div>
+                </div>
+
+            </div>
+        </div>
+    </section>
+    <section id="render-data">
+
+    </section>
+    
+
+    <section class="section-home-cta mt100">
+        <div class="container">
+            <div class="row">
+                <div class="col-xs-12 col-sm-12 col-md-12 col-lg-12">
+                    <div class="home-cta">
+                        <div class="image relative">
+                            <div class="wrapper">
+                                <div class="word">
+                                    <h2 class="box-category no-transform white bold">
+                                        Yuk Tukarkan Barang Bekasmu di Kamibox!
+                                    </h2>
+                                    <div class="cta mt20">
+                                        <a href="https://kamibox.id/category" class="btn-utama">
+                                            Tukarkan Barang
+                                        </a>
+                                    </div>
+                                </div>
+                            </div>
+                            <img src="https://kamibox.id/images/home-cta.png" alt="Asset Kamibox">
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+
+    <script>
+        load_product(null);
+
+        function load_product(q) {
+
+            $.ajax({
+                url: 'https://kamibox.id/category/fetch',
+                type: 'post',
+                data: {
+                    q: q
+                },
+                dataType: 'json',
+                beforeSend: function() {
+
+                },
+                success: function(response) {
+                    console.log(response);
+                    if (response.error == false) {
+                        if (response.is_empty == true) {
+							$('#render-data').html(`<div class="col-xs-12 col-sm-12 col-md-12 col-lg-12">
+				<div class="subject-heading text-center">
+					<h4 class="box-category no-transform">
+    						Kategori tidak ditemukan
+					</h4>
+				</div>
+			</div>`);
+                        } else {
+                            $('#render-data').html(response.content);
+                        }
+                    }
+                },
+                error: function(xhr) {
+                    // $('.loader').attr('hidden', true);
+                    // $('#render-list').append('something went wrong');
+
+                }
+            })
+        }
+
+        function _search() {
+            let q = $('input[name="search_category"]').val();
+            load_product(q);
+        }
+        $('input[name="search_category"]').on('keypress', function(e) {
+            if (e.which == 13) {
+                _search();
+            }
+        });
+    </script>
+
+    <div class="wa-floating">
+       <a href="https://form.wa.link/kamibox"
+            target="_blank">
+            <div class="image">
+                <img src="https://kamibox.id/images/wa-icon.png" alt="Asset Triputra Andalan">
+                <p class="text-center bold">
+                    Hubungi Kami
+                </p>
+            </div>
+        </a>
+    </div>
+    <div class="footer-top">
+        <div class="image">
+            <lottie-player src="https://kamibox.id/images/footer/data.json" autoplay loop></lottie-player>
+        </div>
+    </div>
+    <footer class="footer">
+        <div class="container">
+            <div class="row">
+                <div class="col-md-12">
+                    <div class="footer-copyright text-center">
+                        <div class="image-footer">
+                            <div class="image">
+                                <img src="https://kamibox.id/images/logo-white.png" alt="Logo Kamibox">
+                            </div>
+                        </div>
+                        <div class="copyright">
+                            <p class="jal-small white">
+                                <span class="bold">PT Kamibox Maju Sejahtera</span> | Copyright kamibox.id © 2026
+
+                            </p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </footer>
+
+    <script>
+    	
+        // TOGGLE HAMBURGER & COLLAPSE NAV
+        $('.nav-toggle').on('click', function() {
+            $(this).toggleClass('open');
+            $('.menu-right').toggleClass('collapse');
+        });
+        // REMOVE X & COLLAPSE NAV ON ON CLICK
+        $('.menu-right a').on('click', function() {
+            $('.nav-toggle').removeClass('open');
+            $('.menu-right').removeClass('collapse');
+        });
+
+        // LINKS TO ANCHORS
+        $('.menu-right a[href^="#"]').on('click', function(event) {
+
+            var $target = $(this.getAttribute('href'));
+
+            if ($target.length) {
+                event.preventDefault();
+                $('html, body').stop().animate({
+                    scrollTop: $target.offset().top
+                }, 750, 'easeInOutQuad');
+            }
+        });
+        function _warningCompletedData(){
+            swal('Warning','Lengkapi Profile dan Alamat','warning');
+        }
+        function show_pwd(e) {
+            var input_target = $(e).attr('data-target-name');
+            var pwd = $('input[name="' + input_target + '"]');
+            if (pwd.attr('type') == 'password') {
+                pwd.attr('type', 'text');
+                $(e).attr('class', 'show-pwd fa fa-eye pointer');
+            } else {
+                pwd.attr('type', 'password');
+                $(e).attr('class', 'show-pwd fa fa-eye-slash pointer');
+            }
+        };
+    </script>
+
+    <!-- Contact Us Section -->
+    <!-- End of Contact Us Section -->

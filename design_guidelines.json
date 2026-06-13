@@ -1,0 +1,150 @@
+{
+  "project_context": {
+    "name": "Bank Sampah",
+    "description": "Civic directory web platform for waste recycling in Indonesia (Jakarta Barat).",
+    "target_audience": "Indonesian households, non-tech-savvy users.",
+    "tone": "Civic-utility, practical, warm, trustworthy. Aims for a 'Gojek/Tokopedia clean utility' feel. Avoids generic eco-green-leaf cliches."
+  },
+  "theme_and_archetype": {
+    "theme": "light",
+    "archetype": "Archetype 1 (Organic & Earthy) mixed with Indonesian Civic-Tech Utility",
+    "reasoning": "A purely dark mode app feels too 'tech-bro' for standard households. A light theme provides clarity and accessibility for utility apps. Organic earthy tones (Terracotta and Forest Green) replace the generic 'neon eco green' to feel more grounded, warm, and distinctly Indonesian."
+  },
+  "colors": {
+    "background": {
+      "base": "#F7F7F5",
+      "surface": "#FFFFFF",
+      "surface_muted": "#F1F5F9"
+    },
+    "primary": {
+      "DEFAULT": "#D95D39",
+      "hover": "#BF4E2D",
+      "foreground": "#FFFFFF",
+      "description": "Warm Terracotta. Used for primary CTAs like 'Cek Harga', WhatsApp buttons, and active states. Highly visible and energetic."
+    },
+    "secondary": {
+      "DEFAULT": "#2D6A4F",
+      "hover": "#1B4332",
+      "foreground": "#FFFFFF",
+      "description": "Deep Forest Green. Used for badges, verified status, and secondary highlights. Feels stable and environmentally conscious without being preachy."
+    },
+    "neutral": {
+      "text_primary": "#1E293B",
+      "text_secondary": "#64748B",
+      "border": "#E2E8F0",
+      "divider": "#F1F5F9"
+    },
+    "status": {
+      "success": "#10B981",
+      "warning": "#F59E0B",
+      "error": "#EF4444"
+    },
+    "forbidden_colors": [
+      "Purple",
+      "Teal",
+      "Neon Green",
+      "Bright Cyan"
+    ]
+  },
+  "typography": {
+    "families": {
+      "heading": "'Plus Jakarta Sans', sans-serif",
+      "body": "'Figtree', sans-serif"
+    },
+    "scales": {
+      "h1": "text-4xl tracking-tight font-black leading-tight",
+      "h2": "text-2xl sm:text-3xl tracking-tight font-bold leading-snug",
+      "h3": "text-xl font-semibold leading-snug",
+      "h4": "text-lg font-semibold",
+      "body_lg": "text-lg font-medium",
+      "body": "text-base font-normal leading-relaxed",
+      "small": "text-sm font-medium",
+      "overline": "text-xs font-bold tracking-[0.15em] uppercase text-slate-500"
+    },
+    "rules": [
+      "Headings must always use Plus Jakarta Sans. Do not use Inter.",
+      "Never center-align long paragraphs. Left-align dense content.",
+      "Ensure robust line height for Bahas Indonesia content (leading-relaxed for body)."
+    ]
+  },
+  "spacing_and_layout": {
+    "strategy": "Mobile-First (375px primary target). Desktop uses Bento-grid structure.",
+    "container": "max-w-md mx-auto md:max-w-5xl lg:max-w-7xl px-4 md:px-8",
+    "section_spacing": "py-12 md:py-20",
+    "item_spacing": "gap-4 md:gap-6",
+    "radius": {
+      "card": "rounded-2xl",
+      "button": "rounded-xl",
+      "chip": "rounded-full"
+    },
+    "shadows": {
+      "subtle": "shadow-[0_2px_10px_rgba(0,0,0,0.04)]",
+      "floating": "shadow-[0_8px_30px_rgba(0,0,0,0.08)]"
+    }
+  },
+  "components": {
+    "bottom_navigation": {
+      "style": "Fixed bottom, solid white background, top border (border-slate-200), pb-safe. Z-index 50.",
+      "items": "Beranda, Katalog, Kalkulator, Bank Sampah, Vendor",
+      "active_state": "Text and icon colored in Primary (Terracotta). Inactive is Text Secondary (Slate-500)."
+    },
+    "chips": {
+      "style": "Pill shape (rounded-full), px-4 py-2 text-sm font-medium transition-all",
+      "active": "bg-primary text-white shadow-md",
+      "inactive": "bg-white border border-slate-200 text-slate-600 hover:bg-slate-50"
+    },
+    "cards": {
+      "style": "White background, rounded-2xl, subtle shadow, 1px border border-slate-100. Internal padding p-4 or p-6.",
+      "interaction": "hover:-translate-y-1 hover:shadow-floating transition-all duration-200"
+    },
+    "whatsapp_cta": {
+      "style": "Full width on mobile, rounded-xl, prominent. Can use #25D366 (WA Brand Color) specifically for the WA button to maintain user recognition, or stick to Primary CTA styling with WA icon."
+    }
+  },
+  "icons_and_media": {
+    "icon_library": "lucide-react",
+    "image_urls": [
+      {
+        "category": "hero_illustration",
+        "url": "https://static.prod-images.emergentagent.com/jobs/bcad0dc1-ac2b-4f37-9885-d0dedef4703a/images/01701585aa819ebc3779499c8b3b8685a7dc8158111498558d663bdc48e0b287.png",
+        "description": "Clean civic utility illustration of an Indonesian neighborhood at daytime, terracotta and green tones. Used for Homepage Hero."
+      },
+      {
+        "category": "waste_catalog_cover",
+        "url": "https://static.prod-images.emergentagent.com/jobs/bcad0dc1-ac2b-4f37-9885-d0dedef4703a/images/fdc562468a880c9a467e79bc8629db5f7c82655f936f5b4ca3c0f2a5a204de38.png",
+        "description": "Top-down editorial photo of recyclable materials on a warm gray background. Used for Recycling Guides or Catalog Header."
+      },
+      {
+        "category": "vendor_placeholder",
+        "url": "https://static.prod-images.emergentagent.com/jobs/bcad0dc1-ac2b-4f37-9885-d0dedef4703a/images/5e1b6ca5526b37044a3ad9bd492fe046e2ac3d4678dd55c37025accdc42e6c25.png",
+        "description": "Clean photo of an Indonesian local shop (warung). Used as a placeholder for Vendor/Bank Directory."
+      },
+      {
+        "category": "jakarta_skyline",
+        "url": "https://images.pexels.com/photos/35498205/pexels-photo-35498205.jpeg?auto=compress&cs=tinysrgb&dpr=2&h=650&w=940",
+        "description": "Jakarta skyline. Used for section backgrounds or location-specific empty states."
+      },
+      {
+        "category": "article_placeholder",
+        "url": "https://images.unsplash.com/photo-1698067929117-9789e0719cbe?crop=entropy&cs=srgb&fm=jpg&ixid=M3w3NDQ2MzR8MHwxfHNlYXJjaHwyfHxyZWN5Y2xpbmclMjBwYXBlciUyMGNhcmRib2FyZHxlbnwwfHx8fDE3NzgxNDY1OTB8MA&ixlib=rb-4.1.0&q=85",
+        "description": "Brown paper bag. Good for recycling guide article covers."
+      }
+    ]
+  },
+  "domain_specific_rules": {
+    "currency_format": "Always format currency as 'Rp X.XXX/kg' (e.g., Rp 1.500/kg). Use dots for thousands separators, not commas.",
+    "language": "All placeholder text and UI copy MUST be in Bahasa Indonesia.",
+    "map_integration": "Use Google Maps Embed API (iframe-based) only, as requested. Do not attempt to use the JS SDK.",
+    "testing_attributes": "Add data-testid to EVERY interactive element (buttons, tabs, chips, form inputs, links) using kebab-case role-based names (e.g., data-testid='katalog-filter-plastik')."
+  },
+  "instructions_to_main_agent": [
+    "Install and use 'Plus Jakarta Sans' and 'Figtree' from Google Fonts or standard imports.",
+    "Ensure the application layout strictly follows mobile-first dimensions. Wrapper main layout should simulate a mobile app view centered on desktop (max-w-md), but scale beautifully if standard responsive web is implemented.",
+    "Use standard Shadcn UI components for complex interactions (Tabs, Dialogs, Select), but aggressively restyle them to match the defined 'Cards' and 'Chips' guidelines (rounded-2xl, specific shadows). Do NOT leave Shadcn components looking default 'Vercel-like'.",
+    "In the Home Page hero, use the 'hero_illustration' image. Do NOT apply heavy dark overlays; if text contrast is needed, use a soft bottom-to-top gradient.",
+    "For the directory filters, implement horizontal scrolling chip lists (overflow-x-auto, no-scrollbar) to mimic native mobile patterns.",
+    "Include a 'Bottom Navigation Bar' component fixed to the bottom of the screen on mobile viewports. Hide it on md: screens and above if adopting a desktop sidebar, otherwise keep it globally for PWA feel.",
+    "All navigation/CTAs that connect to vendors must use 'wa.me' deep links.",
+    "Ensure 'data-testid' is comprehensively applied to all components."
+  ]
+}
